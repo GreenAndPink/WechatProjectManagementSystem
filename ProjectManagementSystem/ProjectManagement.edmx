@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Roche.ProjectManagementDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="ProjectManagementDataModelTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Roche.ProjectManagementDataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ProjectManagementDataModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="WeChatProjectSet" EntityType="Roche.ProjectManagementDataModel.WeChatProject" />
+          <EntitySet Name="ProjectStatusSet" EntityType="Roche.ProjectManagementDataModel.ProjectStatus" />
+          <AssociationSet Name="WeChatProjectProjectStatus" Association="Roche.ProjectManagementDataModel.WeChatProjectProjectStatus">
+            <End Role="WeChatProject" EntitySet="WeChatProjectSet" />
+            <End Role="ProjectStatus" EntitySet="ProjectStatusSet" />
+          </AssociationSet>
+          <EntitySet Name="ProjectRegionSet" EntityType="Roche.ProjectManagementDataModel.ProjectRegion" />
+          <EntitySet Name="ProjectProcessSet" EntityType="Roche.ProjectManagementDataModel.ProjectProcess" />
+          <EntitySet Name="ProjectProcessStepSet" EntityType="Roche.ProjectManagementDataModel.ProjectProcessStep" />
+          <EntitySet Name="StepStatusSet" EntityType="Roche.ProjectManagementDataModel.StepStatus" />
+          <AssociationSet Name="WeChatProjectProjectProcess" Association="Roche.ProjectManagementDataModel.WeChatProjectProjectProcess">
+            <End Role="WeChatProject" EntitySet="WeChatProjectSet" />
+            <End Role="ProjectProcess" EntitySet="ProjectProcessSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProjectProcessProjectProcessStep" Association="Roche.ProjectManagementDataModel.ProjectProcessProjectProcessStep">
+            <End Role="ProjectProcess" EntitySet="ProjectProcessSet" />
+            <End Role="ProjectProcessStep" EntitySet="ProjectProcessStepSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProjectProcessStepStepStatus" Association="Roche.ProjectManagementDataModel.ProjectProcessStepStepStatus">
+            <End Role="ProjectProcessStep" EntitySet="ProjectProcessStepSet" />
+            <End Role="StepStatus" EntitySet="StepStatusSet" />
+          </AssociationSet>
+          <AssociationSet Name="WeChatProjectProjectRegion" Association="Roche.ProjectManagementDataModel.WeChatProjectProjectRegion">
+            <End Role="WeChatProject" EntitySet="WeChatProjectSet" />
+            <End Role="ProjectRegion" EntitySet="ProjectRegionSet" />
+          </AssociationSet>
+          <EntitySet Name="ProcessStepCommentSet" EntityType="Roche.ProjectManagementDataModel.ProcessStepComment" />
+          <AssociationSet Name="ProjectProcessStepProcessStepComment" Association="Roche.ProjectManagementDataModel.ProjectProcessStepProcessStepComment">
+            <End Role="ProjectProcessStep" EntitySet="ProjectProcessStepSet" />
+            <End Role="ProcessStepComment" EntitySet="ProcessStepCommentSet" />
+          </AssociationSet>
+          <EntitySet Name="ProjectCommentSet" EntityType="Roche.ProjectManagementDataModel.ProjectComment" />
+          <AssociationSet Name="WeChatProjectProjectComment" Association="Roche.ProjectManagementDataModel.WeChatProjectProjectComment">
+            <End Role="WeChatProject" EntitySet="WeChatProjectSet" />
+            <End Role="ProjectComment" EntitySet="ProjectCommentSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="WeChatProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ProjectStatus" Relationship="Roche.ProjectManagementDataModel.WeChatProjectProjectStatus" FromRole="WeChatProject" ToRole="ProjectStatus" />
+          <Property Name="CustomerName" Type="String" Nullable="false" />
+          <Property Name="BillDateTime" Type="DateTime" Nullable="false" />
+          <Property Name="MKT" Type="String" Nullable="false" />
+          <Property Name="Configuration" Type="String" Nullable="false" />
+          <Property Name="SpecialConfiguration" Type="String" Nullable="false" />
+          <Property Name="ProjectEstimation" Type="Roche.ProjectManagementDataModel.ProjectEstimation" Nullable="false" />
+          <Property Name="PMOId" Type="String" Nullable="false" />
+          <Property Name="SellerId" Type="String" Nullable="false" />
+          <Property Name="Dealer" Type="String" Nullable="false" />
+          <Property Name="CreateDateTime" Type="String" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" />
+          <Property Name="UpdateDateTime" Type="String" Nullable="false" />
+          <Property Name="UpdatedBy" Type="String" Nullable="false" />
+          <NavigationProperty Name="ProjectProcess" Relationship="Roche.ProjectManagementDataModel.WeChatProjectProjectProcess" FromRole="WeChatProject" ToRole="ProjectProcess" />
+          <NavigationProperty Name="ProjectRegion" Relationship="Roche.ProjectManagementDataModel.WeChatProjectProjectRegion" FromRole="WeChatProject" ToRole="ProjectRegion" />
+          <NavigationProperty Name="ProjectComment" Relationship="Roche.ProjectManagementDataModel.WeChatProjectProjectComment" FromRole="WeChatProject" ToRole="ProjectComment" />
+        </EntityType>
+        <EntityType Name="ProjectStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+        </EntityType>
+        <Association Name="WeChatProjectProjectStatus">
+          <End Type="Roche.ProjectManagementDataModel.WeChatProject" Role="WeChatProject" Multiplicity="*" />
+          <End Type="Roche.ProjectManagementDataModel.ProjectStatus" Role="ProjectStatus" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="ProjectRegion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Desc" Type="String" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="ProjectEstimation" >
+          <Property Type="Decimal" Name="InitialInstallation" Nullable="false" />
+          <Property Type="Decimal" Name="UpdateEstimation" Nullable="false" />
+          <Property Type="String" Name="DelayComments" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="ProjectProcess">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProjectProcessStep" Relationship="Roche.ProjectManagementDataModel.ProjectProcessProjectProcessStep" FromRole="ProjectProcess" ToRole="ProjectProcessStep" />
+          <Property Name="ProcessType" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectProcessStep">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserInCharge" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <Property Name="StartDatetime" Type="DateTime" Nullable="false" />
+          <Property Name="EndDateTime" Type="DateTime" Nullable="false" />
+          <Property Name="StepStatusId" Type="String" Nullable="false" />
+          <NavigationProperty Name="ProjectProcess" Relationship="Roche.ProjectManagementDataModel.ProjectProcessProjectProcessStep" FromRole="ProjectProcessStep" ToRole="ProjectProcess" />
+          <NavigationProperty Name="StepStatus" Relationship="Roche.ProjectManagementDataModel.ProjectProcessStepStepStatus" FromRole="ProjectProcessStep" ToRole="StepStatus" />
+          <NavigationProperty Name="ProcessStepComment" Relationship="Roche.ProjectManagementDataModel.ProjectProcessStepProcessStepComment" FromRole="ProjectProcessStep" ToRole="ProcessStepComment" />
+        </EntityType>
+        <EntityType Name="StepStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Desc" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="WeChatProjectProjectProcess">
+          <End Type="Roche.ProjectManagementDataModel.WeChatProject" Role="WeChatProject" Multiplicity="*" />
+          <End Type="Roche.ProjectManagementDataModel.ProjectProcess" Role="ProjectProcess" Multiplicity="0..1" />
+        </Association>
+        <Association Name="ProjectProcessProjectProcessStep">
+          <End Type="Roche.ProjectManagementDataModel.ProjectProcess" Role="ProjectProcess" Multiplicity="1" />
+          <End Type="Roche.ProjectManagementDataModel.ProjectProcessStep" Role="ProjectProcessStep" Multiplicity="*" />
+        </Association>
+        <Association Name="ProjectProcessStepStepStatus">
+          <End Type="Roche.ProjectManagementDataModel.ProjectProcessStep" Role="ProjectProcessStep" Multiplicity="*" />
+          <End Type="Roche.ProjectManagementDataModel.StepStatus" Role="StepStatus" Multiplicity="0..1" />
+        </Association>
+        <Association Name="WeChatProjectProjectRegion">
+          <End Type="Roche.ProjectManagementDataModel.WeChatProject" Role="WeChatProject" Multiplicity="*" />
+          <End Type="Roche.ProjectManagementDataModel.ProjectRegion" Role="ProjectRegion" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="ProcessStepComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comments" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="ProjectProcessStepProcessStepComment">
+          <End Type="Roche.ProjectManagementDataModel.ProjectProcessStep" Role="ProjectProcessStep" Multiplicity="1" />
+          <End Type="Roche.ProjectManagementDataModel.ProcessStepComment" Role="ProcessStepComment" Multiplicity="1" />
+        </Association>
+        <EntityType Name="ProjectComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comments" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="WeChatProjectProjectComment">
+          <End Type="Roche.ProjectManagementDataModel.WeChatProject" Role="WeChatProject" Multiplicity="1" />
+          <End Type="Roche.ProjectManagementDataModel.ProjectComment" Role="ProjectComment" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Roche.ProjectManagementDataModel" />
+        <Alias Key="Target" Value="Roche.ProjectManagementDataModel.Store" />
+        <EntityContainerMapping CdmEntityContainer="ProjectManagementDataModelContainer" StorageEntityContainer="ProjectManagementDataModelTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

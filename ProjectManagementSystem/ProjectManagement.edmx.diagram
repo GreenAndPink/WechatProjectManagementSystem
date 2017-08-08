@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="825bc474993b4616a1f72c94280cff1d" Name="Diagram1" >
+        <EntityTypeShape EntityType="Roche.ProjectManagementDataModel.WeChatProject" Width="1.875" PointX="2.375" PointY="0.5" />
+        <EntityTypeShape EntityType="Roche.ProjectManagementDataModel.ProjectStatus" Width="1.5" PointX="4.875" PointY="0.5" />
+        <AssociationConnector Association="Roche.ProjectManagementDataModel.WeChatProjectProjectStatus" />
+        <EntityTypeShape EntityType="Roche.ProjectManagementDataModel.ProjectRegion" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="Roche.ProjectManagementDataModel.ProjectProcess" Width="1.5" PointX="4.875" PointY="2.125" />
+        <EntityTypeShape EntityType="Roche.ProjectManagementDataModel.ProjectProcessStep" Width="2.125" PointX="6.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Roche.ProjectManagementDataModel.StepStatus" Width="1.5" PointX="9.5" PointY="2.25" />
+        <AssociationConnector Association="Roche.ProjectManagementDataModel.WeChatProjectProjectProcess" />
+        <AssociationConnector Association="Roche.ProjectManagementDataModel.ProjectProcessProjectProcessStep" />
+        <AssociationConnector Association="Roche.ProjectManagementDataModel.ProjectProcessStepStepStatus" />
+        <AssociationConnector Association="Roche.ProjectManagementDataModel.WeChatProjectProjectRegion" />
+        <EntityTypeShape EntityType="Roche.ProjectManagementDataModel.ProcessStepComment" Width="2.875" PointX="10.125" PointY="4" />
+        <AssociationConnector Association="Roche.ProjectManagementDataModel.ProjectProcessStepProcessStepComment" />
+        <EntityTypeShape EntityType="Roche.ProjectManagementDataModel.ProjectComment" Width="1.5" PointX="0.5" PointY="3.125" />
+        <AssociationConnector Association="Roche.ProjectManagementDataModel.WeChatProjectProjectComment" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
